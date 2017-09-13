@@ -4,10 +4,11 @@ import os
 import time
 
 s = requests.session()
-r = s.get('https://gbfs.citibikenyc.com/gbfs/en/station_status.json')
+
 
 def informationRead():
 
+    r = s.get('https://gbfs.citibikenyc.com/gbfs/en/station_status.json')
     text = json.loads(r.text)
 
     lastUpdated = text['last_updated']
