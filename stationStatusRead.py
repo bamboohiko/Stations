@@ -16,15 +16,19 @@ def informationRead():
     print(savPath)
     f = open(savPath,'w')
 
-    f.write('"station_id":,"num_bikes_available":,"num_bikes_disabled":,"num_docks_available":,"num_docks_disabled":,"is_installed":,"is_renting":,"is_returning":,"last_reported":,"eightd_has_available_keys":,"last_updated":')
+    
+    ks = ["station_id","num_bikes_available","num_bikes_disabled","num_docks_available","num_docks_disabled","is_installed","is_renting","is_returning","last_reported","eightd_has_available_keys"]
+
+
+    f.write('"station_id":,"num_bikes_available":,"num_bikes_disabled":,"num_docks_available":,"num_docks_disabled":,"is_installed":,"is_renting":,"is_returning":,"last_reported":,"eightd_has_available_keys":,"last_updated":\n')
 
     data = text['data']
     stations = data['stations']
 
     for st in stations:
         rec = ""
-        for inf in st.values():
-            rec += str(inf) + ' '
+        for k in ks:
+            rec += str(st[k]) + ' '
         f.write(rec + str(lastUpdated) + '\n')
 
     f.write(str(text))
